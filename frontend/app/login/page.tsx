@@ -1,0 +1,59 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { apiFetch } from "@/lib/api";
+import { setTokens, isAuthenticated } from "@/lib/auth";
+
+export default function LoginPage() {
+  const router = useRouter();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isAuthenticated()) router.replace("/dashboard");
+  }, [router]);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    try {
+      const result = await apiFetch<{ access: string; refresh: string }>("/api/auth/login/", {
+        method: "POST",
+        body: { username, password },
+      });
+      setTokens(result.access, result.refresh);
+      router.push("/dashboard");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Login failed.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <main className="page">
+      <h1>Login</h1>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <input placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+        <input
+          placeholder="Password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit" disabled={loading}>
+          {loading ? "Logging in…" : "Log in"}
+        </button>
+        {error && <p className="explain-error">{error}</p>}
+      </form>
+      <p className="subtitle">
+        No account? <Link href="/signup">Sign up →</Link>
+      </p>
+    </main>
+  );
+}
