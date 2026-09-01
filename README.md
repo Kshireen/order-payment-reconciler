@@ -88,8 +88,7 @@ the dollar amounts actually agree - it's the order's status field that's stale.
 
 ## LLM approach
 
-Provider: Groq (OpenAI-compatible chat completions API), model configurable via
-`LLM_MODEL` env var (default `llama-3.3-70b-versatile`).
+Provider: Groq (OpenAI-compatible chat completions API), with the model configurable via the `LLM_MODEL` environment variable. The production deployment uses the model configured in the deployment environment.
 
 - **Called server-side only** (`apps/llm/client.py`) - the API key never reaches
   the frontend.
@@ -133,7 +132,7 @@ python -m pytest apps/ -v
 **Frontend**
 ```bash
 cd frontend
-cp .env.local.example .env.local   # point NEXT_PUBLIC_API_BASE_URL at the backend
+cp .env.local.example .env.local   # point NEXT_PUBLIC_API_ROOT at the backend
 npm install
 npm run dev
 ```
