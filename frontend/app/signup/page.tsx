@@ -18,7 +18,7 @@ export default function SignupPage() {
     setLoading(true);
     setError(null);
     try {
-      const result = await apiFetch<{ access: string; refresh: string }>("/api/auth/signup/", {
+      const result = await apiFetch<{ access: string; refresh: string }>("/auth/signup/", {
         method: "POST",
         body: { username, password },
       });

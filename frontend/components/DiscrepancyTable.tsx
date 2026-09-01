@@ -33,7 +33,7 @@ export default function DiscrepancyTable() {
     setLoading(true);
     setError(null);
     const timeout = setTimeout(() => {
-      apiFetch<PaginatedResponse<Discrepancy>>(`/api/reconciliation/discrepancies/?${params.toString()}`)
+      apiFetch<PaginatedResponse<Discrepancy>>(`/reconciliation/discrepancies/?${params.toString()}`)
         .then(setData)
         .catch((err) => setError(err instanceof Error ? err.message : "Failed to load discrepancies."))
         .finally(() => setLoading(false));

@@ -14,13 +14,12 @@ export default function AuthNav() {
     const refresh = getRefreshToken();
     try {
       if (refresh) {
-        await apiFetch("/api/auth/logout/", { method: "POST", body: { refresh } });
+        await apiFetch("/auth/logout/", { method: "POST", body: { refresh } });
       }
     } catch {
       // token may already be expired/invalid server-side - clear local state regardless
     } finally {
       clearTokens();
-    //   router.push("/login");
     window.location.href = "/login";
     }
   }

@@ -22,7 +22,7 @@ export default function LoginPage() {
     setLoading(true);
     setError(null);
     try {
-      const result = await apiFetch<{ access: string; refresh: string }>("/api/auth/login/", {
+      const result = await apiFetch<{ access: string; refresh: string }>("/auth/login/", {
         method: "POST",
         body: { username, password },
       });

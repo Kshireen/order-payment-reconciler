@@ -13,7 +13,7 @@ export default function DiscrepancyRow({ d }: { d: Discrepancy }) {
     setLoading(true);
     setError(null);
     try {
-      const result = await apiFetch<ExplainResponse>("/api/llm/explain/", {
+      const result = await apiFetch<ExplainResponse>("/llm/explain/", {
         method: "POST",
         body: { discrepancy_ids: [d.id] },
       });

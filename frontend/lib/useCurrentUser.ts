@@ -15,7 +15,7 @@ export function useCurrentUser(): State {
       return;
     }
     setState((s) => ({ ...s, loading: true }));
-    apiFetch<{ username: string }>("/api/auth/me/")
+    apiFetch<{ username: string }>("/auth/me/")
       .then((data) => setState({ loading: false, username: data.username }))
       .catch(() => setState({ loading: false, username: null }));
   }, []);

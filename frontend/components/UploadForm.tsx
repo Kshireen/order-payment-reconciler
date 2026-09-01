@@ -23,8 +23,8 @@ export default function UploadForm() {
     try {
       setStatus("uploading");
       setMessage(null);
-      const ordersResult = await uploadFile("/api/orders/upload/", ordersFile);
-      const paymentsResult = await uploadFile("/api/payments/upload/", paymentsFile);
+      const ordersResult = await uploadFile("/orders/upload/", ordersFile);
+      const paymentsResult = await uploadFile("/payments/upload/", paymentsFile);
 
       setStatus("running");
       await apiFetch("/api/reconciliation/run/", { method: "POST" });

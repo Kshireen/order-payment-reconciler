@@ -22,7 +22,7 @@ export default function DashboardPage() {
       router.replace("/login");
       return;
     }
-    apiFetch<ReconciliationRun>("/api/reconciliation/summary/")
+    apiFetch<ReconciliationRun>("/reconciliation/summary/")
       .then(setRun)
       .catch((err) => {
         if (err instanceof ApiError && err.status === 404) {
