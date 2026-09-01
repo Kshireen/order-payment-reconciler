@@ -1,6 +1,6 @@
 import { clearTokens, getAccessToken } from "./auth";
 
-const API_BASE_URL = process.env.NEXT_API_ROOT ?? "http://localhost:8000";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_ROOT ?? "http://localhost:8000";
 
 export class ApiError extends Error {
   status: number;
