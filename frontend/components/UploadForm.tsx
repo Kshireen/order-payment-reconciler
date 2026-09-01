@@ -27,7 +27,7 @@ export default function UploadForm() {
       const paymentsResult = await uploadFile("/payments/upload/", paymentsFile);
 
       setStatus("running");
-      await apiFetch("/api/reconciliation/run/", { method: "POST" });
+      await apiFetch("/reconciliation/run/", { method: "POST" });
 
       setStatus("done");
       const skipped = ordersResult.skipped_rows.length + paymentsResult.skipped_rows.length;
