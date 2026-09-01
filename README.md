@@ -163,7 +163,8 @@ to Vercel as-is; set `NEXT_PUBLIC_API_BASE_URL` to the deployed backend URL.
 
 ## AI tool use
 
-Built with Claude (Anthropic) doing the implementation from a plan I reviewed
-and directed - data investigation, reconciliation rule design, and code
-structure decisions were made and checked by me at each step, not generated in
-one pass.
+Used Claude (Anthropic) for planning and problem-solving support — discussing
+reconciliation rule design, debugging auth/nav state issues, and deployment
+strategy. Code (backend and frontend) was written and fixed by me; Claude was
+used as a thinking partner and for reviewing/troubleshooting approaches, not
+for generating implementation in one pass.
